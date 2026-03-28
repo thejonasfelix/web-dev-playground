@@ -42,4 +42,4 @@ A organização do repositório segue uma separação simples por responsabilida
 
 Este repositório é continuamente atualizado conforme a evolução dos estudos.
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-blue)
+
