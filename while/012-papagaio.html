@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papagaio</title>
+</head>
+
+<body>
+    <h3>PAPAGAIO REPETITIVO</h3>
+    Entre com o número de repetição: <input id="ipt_num" type="number"><br>
+    Entre com a frase: <input id="ipt_frase" type="text"> <br>
+    <button onclick="papagaio()">Papagaio repetitivo</button><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function papagaio() {
+        let numero = Number(ipt_num.value);
+        let frase = ipt_frase.value;
+        let cont = 0;
+        let ax_erros = false;
+        let literal = '';
+        if (numero < 1 || numero > 20 || numero % 1 != 0) {
+            alert("Insira um número inteiro entre 1 e 20")
+            ax_erros = true;
+        }
+        if (frase.length == 0) {
+            alert("Entre com algo na frase.")
+            ax_erros = true
+        }
+
+        if (ax_erros == false) {
+            while (cont < numero) {
+                cont = cont + 1;
+                literal += frase
+                div_msg.innerHTML += `<br> ${cont}`
+                ind2 = 0;
+                while(ind2 < cont){
+                    ind2 = ind2 = 1;
+                    div_msg.innerHTML += `<br> ${frase}`
+                };
+            }
+        }
+    }
+</script>

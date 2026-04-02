@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papagaio</title>
+</head>
+<body>
+    <h3>Papagaio</h3>
+    numero: <input type="text" id="ipt_num"><br>
+    frase: <input type="text" id="ipt_frase"><br>
+    <button onclick="papagaio()">Papagaio</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function papagaio(){
+        let numero = Number(ipt_num.value)
+        let frase = ipt_frase.value
+        let cont = 0
+        let erros = false
+        if (numero < 1 || numero > 20 || numero % 1 != 0) {
+            alert("Insira um número inteiro entre 1 e 20")
+            ax_erros = true;
+        }
+        if (frase.length == 0) {
+            alert("Entre com algo na frase.")
+            ax_erros = true
+        }
+        if(erros == false){
+            while(erros == false){
+                cont = cont + 1
+                div_msg.innerHTML += `<br> ${cont}- ${frase}`
+            }
+        }
+    }
+</script>
