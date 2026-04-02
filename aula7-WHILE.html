@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expressão de Amor</title>
+</head>
+<body>
+    <h3>Expressão de amor</h3>
+    Insira o nome da pessoa que mais ama: <input id="ipt_nome" type="text"> <br>
+    Entre com o quanto vc ama (1-10): <input id="ipt_vezes" type="text"> <br>
+    <button onclick="expressar()">Expressar Amor</button> <br>
+    <div id="div_msg"></div> 
+</body>
+</html>
+<script>
+    function expressar(){
+        let nome = ipt_nome.value.trim();
+        let vezes = Number(ipt_vezes.value);
+        let ax_erros = '';
+        let ax_contador = 0;
+        if(nome.length < 3){
+            ax_erros += 'Insira um nome válido. Pelo menos 3 caracteres'
+        }
+        if(vezes < 1 || vezes > 10){
+            ax_erros += 'Insira a quantidade entre 1 e 10'
+        }
+        if(ax_erros != ''){
+            alert(ax_erros);
+        }
+        else{
+            while(ax_contador < vezes){
+                ax_contador = ax_contador + 1
+                div_msg.innerHTML += `<br> ${ax_contador} - ${nome} eu te amo - Lembre sempre disso.` 
+            }
+        }
+    }
+</script>

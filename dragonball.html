@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guerreiros do Dragon Ball</title>
+</head>
+
+<body>
+    <h3><b>Guerreiros do Dragon Ball</b></h3>
+    Insira o nome do guerreiro(“Gohan”, “Freeza”, “Goku”, “Vegeta”, “Broly”, “Jiren”, “Granolah”):<br>
+    <input id="ipt_nome"
+        type="text"><br><br>
+    Insira a força do guerreiro (entre 1 e 99):<br>
+    <input id="ipt_forca" type="text"><br><br>
+    <button onclick="registrar()">Registrar Guerreiro</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    guerreiros = []
+    function registrar() {
+        let nome_guerreiro = ipt_nome.value.toLowerCase()
+        let forca = Number(ipt_forca.value)
+
+        if (nome_guerreiro != "gohan" && nome_guerreiro != "freeza" && nome_guerreiro != "goku" && nome_guerreiro != "vegeta" && nome_guerreiro != "broly" && nome_guerreiro != "jiren" && nome_guerreiro != "granolah") {
+            alert("Insira um nome válido")
+        }
+        else if (forca < 1 || forca > 99) {
+            alert("Insira uma forca válida")
+        }
+        if (guerreiros.indexOf(nome_guerreiro) >= 0) {
+            alert("Essa lista não pode ter nomes duplicados")
+        }
+
+        else {
+            guerreiros.push(nome_guerreiro)
+            multiplicado = 0
+            resultado = 0
+            if (nome_guerreiro.startsWith('g')) {
+                multiplicado = 70
+                resultado = forca * multiplicado
+
+                if (resultado >= 1000 && resultado <= 2000) {
+                    resultado += resultado * 0.0809
+                }
+                else if (resultado > 2000) {
+                    resultado -= resultado * 0.0202
+                }
+            }
+            else {
+                multiplicado = 50
+                resultado = forca * multiplicado
+                if (resultado >= 1000 && resultado <= 2000) {
+                    resultado += resultado * 0.0809
+                }
+                else if (resultado > 2000) {
+                    resultado -= resultado * 0.0202
+                }
+            }
+        }
+        div_msg.innerHTML += `O guerreiro ${nome_guerreiro} com ki de ${forca} foi multiplicado por ${multiplicado} e seu ki resultante é ${resultado.toFixed(2)} <br>`
+    }
+</script>
