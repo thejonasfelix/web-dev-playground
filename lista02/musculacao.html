@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    de quantos em quantos em dias voce treina: <input id="ipt_dias" type="text"><br>
+    <button onclick="calcular()">Exibir a rotina mensal</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        let mes = 30;
+        let dias = Number(ipt_dias.value);
+        let contador = 0;
+        while(contador <= mes){
+            if(contador % dias == 0){
+                div_msg.innerHTML += `<br>Dia ${contador} - musculação` 
+            }
+            else{
+                div_msg.innerHTML += `<br>Dia ${contador} - Comer, dormir etc`
+            }
+            contador++;
+        }
+    }
+</script>

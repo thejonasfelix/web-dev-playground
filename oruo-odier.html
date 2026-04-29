@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rei do Ouro</title>
+</head>
+
+<body>
+    <h3>Rei do Ouro</h3>
+    Quanto ele tem de dinheiro no banco: <input id="ipt_dinheiro_banco" type="text"> <br>
+    Quantas pedras de ouro ele possui: <input id="ipt_pedras" type="text"> <br>
+    Qual o valor do aluguel: <input id="ipt_aluguel" type="text"> <br>
+    Quantos meses de aluguel ele pagará por ano: <input id="ipt_meses" type="text"> <br>
+    Quantos anos ele pretende viver: <input id="ipt_expectativa" type="text"> <br>
+    <button onclick="calcular()">Calcular!</button><br><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        let ano = 1;
+        let mes = 0;
+        let valorPedra = 10000;
+        let din = Number(ipt_dinheiro_banco.value);
+        let pedras = Number(ipt_pedras.value);
+        let aluguel = Number(ipt_aluguel.value);
+        let meses = Number(ipt_meses.value);
+        let expectativa = Number(ipt_expectativa.value);
+        let valorTotal = 0;
+        let totalmeses = 0;
+
+        if (din < 0 ||
+            pedras < 0 ||
+            aluguel < 0 ||
+            meses < 0 ||
+            expectativa < 0) {
+            alert('Por favor, insira um valor válido!')
+        }
+        else {
+            while (din >= aluguel || pedras > 0) {
+                if (din >= aluguel) {
+                    din -= aluguel
+                    mes++;
+                    totalmeses++;
+                    if (mes > 12) {
+                        ano++;
+                        mes = 1;
+                        div_msg.innerHTML += `<br>Ano ${ano}`
+                    }
+                    div_msg.innerHTML += `<br>Mês ${mes} saldo inicial no banco  <br>R$ ${din} - <br>saldo de pedras= ${pedras} - <br>saldo final no banco - R$ ${din}<br><br>`
+                }
+                else {
+                        pedras -= 1
+                        din += valorPedra
+                }
+            }
+            div_msg.innerHTML += `
+                <br><br>Foram pagos ${totalmeses} meses de aluguel e você ficou com R$ ${din} no banco e ${pedras} pedras de ouro 
+                <br>Após ${totalmeses} meses de aluguel você faliu!!!!`
+        }
+    }
+</script>

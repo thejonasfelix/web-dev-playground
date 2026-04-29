@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.card-titulo{
+    border: 1.5px solid;
+    border-radius: 3px;
+    border-color: black;
+    background-color: black;
+    color: white;
+    width: 100vw;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 36px;
+}   
+
+.container-cards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.card-1{
+    border: 1px solid;
+    border-radius: 13px;
+    border-color: rgb(196, 196, 196);
+    background-color: rgb(196, 196, 196);
+    color: rgb(0, 0, 0);
+    width: 50vw;
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+}   

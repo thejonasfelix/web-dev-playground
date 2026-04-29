@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    dividendo: <input id="ipt_numero" type="text"><br>
+    divisor: <input id="ipt_divisor" type="text"><br>
+    <button onclick="divisivel()">Divisível</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function divisivel(){
+        let dividendo = Number(ipt_numero.value)
+        let divisor = Number(ipt_divisor.value);
+        let quociente = 0;
+        while(dividendo >= divisor){
+            dividendo = dividendo - divisor
+            quociente++;
+        }
+        div_msg.innerHTML = `<br>dividendo ${dividendo} <br> divisor ${divisor} e quociente ${quociente}`
+        }
+</script>
+</html>

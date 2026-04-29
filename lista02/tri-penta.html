@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    maior numero: <input id="ipt_maior" type="text"><br>
+    menor numero: <input id="ipt_menor" type="text"><br>
+    <button onclick="calcular()">Curto 3 e 5!</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        let maior = Number(ipt_maior.value);
+        let menor = Number(ipt_menor.value);
+        contador = menor;
+        while(contador <= maior){
+            if(contador % 3 == 0){
+                div_msg.innerHTML += `<br>É TRI` 
+            }
+            if(contador % 5 == 0){
+                div_msg.innerHTML += `<br>É PENTA` 
+            }
+            if (contador % 3 == 0 && contador % 5 == 0){
+                div_msg.innerHTML += `<br>É TRI!É PENTA` 
+            }
+            else{
+                div_msg.innerHTML += `<br>${contador}`
+            }
+            contador++;
+        }
+    }
+</script>

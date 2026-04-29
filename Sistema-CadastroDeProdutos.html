@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    nome do produto <input id="ipt_nome_p" type="text"> <br><br>
+    preco de compra <input id="ipt_preco_c" type="text"> <br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="relatorio()">Relatório de estoque</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    produtos = []
+    preco_produtos = []
+    preco_venda = []
+    function cadastrar(){
+        let nomeProduto = ipt_nome_p.value
+        let precoCompra = ipt_preco_c.value
+        let precoVenda = precoCompra * 1.25
+        produtos.push(nomeProduto)
+        preco_produtos.push(precoCompra)
+        preco_venda.push(precoVenda)
+        ipt_nome_p.value = ''
+        ipt_preco_c.value = ''
+
+    }
+
+    function relatorio(){
+        let maior_valor = preco_produtos[0]
+        let menor_preco = preco_produtos[0]
+        let produto_caro = produtos[0]
+        let produto_barato = produtos[0]
+
+        div_msg.innerHTML += `<br>Total de produtos: ${produtos.length}<br>`
+
+        for(let i = 0; i < produtos.length; i++){
+            let preco_atual = preco_produtos[i];
+            let produto_atual = produtos[i]
+
+            if (preco_atual > maior_valor) {
+                maior_valor = preco_atual;
+                produto_caro = produto_atual
+            }
+            if (preco_atual < menor_preco) {
+                menor_preco = preco_atual;
+                produto_barato = produto_atual
+            }
+
+// FALTA TERMINAR
+            div_msg.innerHTML += `
+            <br>Produto ${i + 1}: ${produtos[i]}
+            <br>Preço de Compra: R$${preco_produtos[i]}. Vender por R$${preco_venda[i]}`
+            
+        }
+        
+    }
+</script>

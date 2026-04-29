@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    insira uma frase: <input id="ipt_frase" type="text">
+    insira uma letra: <input type="text" name="" id="ipt_letra">
+    <button onclick="contar()">Revelar índices</button>
+</body>
+
+</html>
+<script>
+    function contar() {
+        let frase = ipt_frase.value.toLowerCase()
+        let tamanhofrase = frase.length
+        let letra = ipt_letra.value.toLowerCase()
+        let contador = 0;
+        let qtdletra = 0;
+
+        while (contador < tamanhofrase) {
+            let frasesletras = frase[contador]
+
+            if (frasesletras == letra) {
+                qtdletra = qtdletra + 1
+
+                div_msg.innerHTML += `A letra foi encontrada no índice: ${contador} <br>`
+            }
+            contador = contador + 1
+        } if (qtdletra > 0) {
+            div_msg.innerHTML += `<br>A letra aparece um total de ${qtdletra} vez(es).`;
+        } else {
+            div_msg.innerHTML = `Essa letra está em outro universo!`;
+        }
+    }
+
+</script>

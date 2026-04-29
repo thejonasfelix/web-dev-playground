@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    quantidade marinheiros: <input id="ipt_qtd_marinheiros" type="text"><br>
+    carne no estoque: <input id="ipt_qtd_carne" type="text"> <br>
+    <button onclick="batalha()">iniciar batalha</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function batalha(){
+        let marinheiros = Number(ipt_qtd_marinheiros.value);
+        let carne = Number(ipt_qtd_carne.value);
+        let energialuffy = 100;
+        let energiamarinheiros = 5 * marinheiros;
+        let carnesconsumo = 0;
+        while(energialuffy < energiamarinheiros && carne > 0){
+            energialuffy += 100;
+            carne--;
+            carnesconsumo++;
+        }
+        if(energialuffy >= energiamarinheiros){
+            let energiarestante = energialuffy - energiamarinheiros
+            div_msg.innerHTML = `Luffy saiu vitorioso, comeu ${carnesconsumo} carne(s), derrotou ${marinheiros} marinheiro(s) e sobrou ${energiarestante} pontos de energia`
+        }
+        else{
+            let marinheirosderrota = Math.floor(energialuffy / 5);
+            let energiarestante = 0
+            div_msg.innerHTML = `Luffy foi derrotado, comeu ${carnesconsumo} carne(s), derrotou ${marinheirosderrota} marinheiro(s) e sobrou ${energiarestante} pontos de energia`
+        }
+    }
+</script>

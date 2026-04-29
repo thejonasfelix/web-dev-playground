@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Chart JS</title>
+</head>
+
+<body style="display: flex;"> 
+    <div>
+        <canvas id="mychart" style="position: relative; height:40vh; width:40vw"></canvas>
+
+    </div>
+    <div>
+        <canvas id="mychart2" style="position: relative; height:40vh; width:40vw"></canvas>
+
+    </div>
+</body>
+
+</html>
+<script>
+    let labels = [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',];
+
+    let data = {
+        labels: labels,
+        datasets: [{
+            label: 'My firts dataset',
+            backgroundColor: 'rgb(255, 0, 0)',
+            bordercolor: 'rgb(255, 0, 0)',
+            data: [0, 10, 5, 2, 20, 30, 45],
+        },
+        {
+            label: 'My firts dataset 2',
+            backgroundColor: 'rgb(0, 0, 255)',
+            bordercolor: 'rgb(0, 0, 255)',
+            data: [0+10, 10+10, 5+10, 2+10, 20+10, 30+10, 45+10],
+        }]
+    };
+
+    let config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+
+    let config2 = {
+        type: 'bar',
+        data: data,
+        options: {}
+    };
+
+</script>
+<script>
+    let myChart = new Chart(
+        document.getElementById('mychart'),
+        config
+    );
+
+    let myChart2 = new Chart(
+        document.getElementById('mychart2'),
+        config2
+    );
+</script>

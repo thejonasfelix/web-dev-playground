@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exptressar Amor</title>
+</head>
+<body>
+    <h3>Expressar Amor</h3>
+    Nome da pessoa amavél: <input id="ipt_nome" type="text"><br>
+    Insira o quanto ama essa pessoa: <input id="ipt_vezes" type="text"> <br>
+    <button onclick="calcular()">Expressar Amor</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        let nome = ipt_nome.value
+        let vezes = Number(ipt_vezes.value)
+        let contador = 0
+        while(contador < vezes){
+            contador = contador + 1
+            div_msg.innerHTML += `<br>${nome}, eu te amo! Sempre lembre disso!`
+        }
+    }
+</script>

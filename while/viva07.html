@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viva o 07</title>
+</head>
+<body>
+    <h3>Viva o 07</h3>
+    Insira um número(entre 0 e 200): <input id="ipt_numero" type="text">
+    <button onclick="viva()">Viva o 7!</button> <br><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function viva(){
+        let contador = 0
+        let numero = Number(ipt_numero.value)
+        while(contador < numero){
+            contador = contador + 1   
+            if(contador % 7){
+                div_msg.innerHTML += ``
+            }
+            else{
+                div_msg.innerHTML += `<br>${contador}` 
+            }
+        }
+    }
+</script>

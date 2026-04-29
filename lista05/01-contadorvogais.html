@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    insira uma frase: <input id="ipt_frase" type="text">
+    <button onclick="contar()">Contar Vogais</button>
+</body>
+</html>
+<script>
+    function contar(){
+        let frase = ipt_frase.value.toLowerCase()
+        let tamanhofrase = frase.length
+        let contador = 0;
+        let qtdvogais = 0;
+        while(contador < tamanhofrase){
+            let letra = frase[contador]
+            if('aeiou'.includes(letra)){
+                qtdvogais = qtdvogais + 1
+            } 
+            contador = contador + 1
+        }
+        div_msg.innerHTML += `A frase possui um total de ${tamanhofrase} letras e ${qtdvogais} vogais.`
+        if(frase.includes('!')){
+               div_msg.innerHTML += `A frase é uma afirmação!` 
+            }
+        else if(frase.includes('?')){
+                div_msg.innerHTML += `A frase é uma pergunta` 
+            }
+    }
+</script>

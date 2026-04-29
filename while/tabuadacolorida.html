@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Numero tabuada: <input id="ipt_numero" type="text"><br>
+    Até: <input id="ipt_seg_num" type="text"><br>
+    <button onclick="tabuada()">Tabuada</button><br>
+    <div id="div_msg"></div>
+</body>
+</body>
+</html>
+<script>
+    function tabuada(){
+        let numero = Number(ipt_numero.value)
+        let contador = 0;
+        let ate = Number(ipt_seg_num.value);
+        while(contador < ate){
+            contador = contador + 1;
+            div_msg.innerHTML += `<br>${numero} x ${contador} = ${numero * contador}`
+        }
+    }
+</script>
+</body>
+</html>

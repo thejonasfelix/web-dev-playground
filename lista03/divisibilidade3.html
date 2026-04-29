@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    maior: <input id="ipt_numero" type="text"><br>
+    divisor: <input id="ipt_divisor" type="text"><br>
+    <button onclick="divisivel()">Divisível</button><br>
+    <div id="div_msg"></div>
+</body>
+</body>
+</html>
+<script>
+    function divisivel(){
+        let maior = Number(ipt_numero.value)
+        let divisor = Number(ipt_divisor.value);
+        let soma = 0;
+        contador = 1;
+        while(contador <= maior){
+            if(contador % divisor == 0){
+                div_msg.innerHTML += `<br>${contador}`
+                soma = soma + contador;
+            }
+            else{
+                div_msg.innerHTML += ``
+            }
+            contador = contador + 1;
+        } 
+        div_msg.innerHTML += `<br> A soma dos multiplos é:${soma}`
+    }
+</script>
+</body>
+</html>

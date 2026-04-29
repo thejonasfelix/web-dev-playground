@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Poupança</title>
+
+</head>
+
+<body>
+
+    <h2>Poupança</h2>
+
+    Entre com o valor mensal de depósito: <input id="ipt_deposito" type="number"> <br>
+
+    Entre com a quantidade de meses: <input id="ipt_meses" type="number"> <br>
+
+    Entre com o percentual de juros: <input id="ipt_juros" type="number"> <br> <br>
+
+    Qual é o seu sonho: <input id="ipt_sonho"> <br>
+
+    Qual o valor do seu sonho: <input id="ipt_valorSonho" type="number">
+
+    <button onclick="projetar()">Projetar</button><br> <br>
+
+    <div id="div_msg"></div>
+
+</body>
+
+<script>
+
+    function projetar() {
+        let dep_mensal = Number(ipt_deposito.value);
+        let meses = Number(ipt_meses.value)
+        let percentual = Number(ipt_juros.value)
+        let sonho = ipt_sonho.value
+        let valor_sonho = Number(ipt_valorSonho.value)
+        let valorInicial = 0;
+        let valorFinal = 0;
+        let totalJurosAcumulado = 0;
+        let taxaJuros = percentual / 100;
+        let contador = 1
+        while(contador <= meses){
+            let jurosmensal = valorInicial * taxaJuros
+            valorFinal = valorInicial + jurosmensal + dep_mensal  
+            div_msg.innerHTML += `Mês ${contador} - Inicial: ${valorInicial.toFixed(2)} - Juros: ${jurosmensal.toFixed(2)} - Final: ${valorFinal.toFixed(2)} <br>`
+            valorInicial = valorFinal
+            contador++;}
+        if(valorFinal >= valor_sonho ){
+            let sobra = valorFinal - valor_sonho
+            div_msg.innerHTML += `<br>Parabéns você é um POUPADOR, além do seu sonho de ${sonho} ainda sobrou R$ ${sobra.toFixed(2)} para outras aquisições`
+        }else{
+            let falta = valor_sonho - valorFinal;
+            div_msg.innerHTML += `<br>Você precisa poupar um pouco mais. Para o sonho de ${sonho} ainda falta R$ ${falta.toFixed(2)}`
+        }
+    }
+        l
+</script>
+
+</html>

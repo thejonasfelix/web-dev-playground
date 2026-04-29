@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplo de 5</title>
+</head>
+<body>
+    <h3>Multiplo de 5</h3>
+    Insira um número(20 a 100): <input id="ipt_numero" type="text">
+    <button onclick="multiplo()">Adoro múltiplos de 5</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function multiplo(){
+        let contador = 0
+        let numero = Number(ipt_numero.value)
+        while(contador < numero)
+        {contador = contador + 1   
+            if(contador % 5){
+                div_msg.innerHTML += ``
+            }
+            else{
+                div_msg.innerHTML += `<br>${contador}` 
+            }
+        }
+    }
+</script>

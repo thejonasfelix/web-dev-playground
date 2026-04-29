@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    numero: <input id="ipt_numero" type="text"><br>
+    <button onclick="divisivel()">Ver Divisores</button><br>
+    <div id="div_msg"></div>
+</body>
+</body>
+</html>
+<script>
+    function divisivel(){
+        let divisor = Number(ipt_numero.value);
+        contador = 1;
+        while(contador <= divisor){
+            if(divisor % contador == 0){
+                div_msg.innerHTML += `<br>${contador}`
+            }
+            else{
+                div_msg.innerHTML += ``}
+            contador = contador + 1;
+        }
+    }
+</script>
+</body>
+</html>

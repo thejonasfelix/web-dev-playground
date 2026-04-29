@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    insira uma frase: <input id="ipt_frase" type="text">
+    <button onclick="contar()">Codificar</button>
+</body>
+
+</html>
+<script>
+    function contar(){
+        let frase = ipt_frase.value.toLowerCase()
+        let tamanhofrase = frase.length
+        let contador = 0;
+        let frasecode = ''
+
+        while(contador < tamanhofrase){
+            let letra = frase[contador]
+
+            if(letra == 'a'){
+                frasecode += '1'
+            }else if(letra == 'e'){
+                frasecode += '2'
+            } else if (letra == 'i'){
+                frasecode += '3'
+            } else if (letra == 'o'){
+                frasecode += '4'
+            } else if (letra == 'u'){
+                frasecode += '5'
+            } else{
+                frasecode += letra
+            }
+            contador++;
+        }
+        if(tamanhofrase % 2 == 0){
+               div_msg.innerHTML += `${frasecode}#par` 
+            }
+        else{
+                div_msg.innerHTML += `${frasecode}#impar` 
+            }
+    }
+</script>

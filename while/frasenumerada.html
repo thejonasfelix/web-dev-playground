@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frase Numerada</title>
+</head>
+<body>
+    <h3>Frase Numerada</h3>
+    <button onclick="calcular()">Diga algo sobre a matéria de algoritmos</button> <br><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        let contador = 0;
+        let vezes = 7;
+        let frase = "pescador máximo";
+        
+        while(contador < vezes){
+            contador = contador + 1;
+            div_msg.innerHTML += `<br>${contador}.${frase}`
+        }
+    }
+</script>

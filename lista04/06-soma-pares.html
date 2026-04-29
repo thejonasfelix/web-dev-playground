@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2 Pares</title>
+</head>
+<body>
+    <h3>Soma Pares</h3>
+    numero: <input id="ipt_numero" type="text">
+    <button onclick="calcular_soma()">S2 Pares</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function calcular_soma(){
+        let numero = Number(ipt_numero.value)
+        let contador = 0;
+        let soma_total = 0
+        while(contador < numero){
+            contador = contador + 1;
+            if(contador % 2 == 0){
+                div_msg.innerHTML += `<br>${contador}`
+                soma_total = soma_total + contador
+            }
+            else{
+                div_msg.innerHTML += ``
+            }
+        } 
+        div_msg.innerHTML += `Soma dos pares: ${soma_total}`
+    }

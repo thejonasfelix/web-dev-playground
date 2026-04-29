@@ -7,6 +7,22 @@
     
 </head>
 <body>
-    
+    <h4>Números Cabalísticos</h4>
+    <button onclick="filtrar()">Filtrar Números Cabalísticos</button><br><br>
+    <div id="div_msg"></div>
 </body>
 </html>
+<script>
+    function filtrar(){
+        let contador = 0;
+        let vetor= [3, 4, 7, 10, 12]
+        while(contador < 30){
+            contador = contador + 1;
+            if(vetor.includes(contador)){
+                div_msg.innerHTML += ``
+            } else{
+                div_msg.innerHTML += `<br> ${contador}`
+        }
+    }
+}
+</script>

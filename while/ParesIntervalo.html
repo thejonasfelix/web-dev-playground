@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    De: <input id="ipt_numero" type="text"><br>
+    Até: <input id="ipt_seg_num" type="text"><br>
+    <button onclick="pares()">S2 Pares</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function pares(){
+        let numero = Number(ipt_numero.value)
+        let contador = Number(ipt_seg_num.value);
+        while(numero < contador){
+            numero = numero + 1;
+            if(numero % 2 == 0){
+                div_msg.innerHTML += `<br>${numero}`
+            }
+            else{
+                div_msg.innerHTML += ``
+            }
+        } 
+    }
+</script>
+</body>
+</html>

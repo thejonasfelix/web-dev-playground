@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetor</title>
+</head>
+
+<body>
+    <h3>Notas</h3>
+    Nome do aluno: <input id="ipt_nome" type="text"> <br><br>
+    Primeira nota: <input id="ipt_prinota" type="text"><br>
+    Segunda nota: <input id="ipt_segnota" type="text"><br>
+    Terceira nota: <input id="ipt_ternota" type="text"><br>
+    <button onclick="media()">Média</button> <br>
+    <button onclick="ranking()">Ranking</button> <br>
+    <button onclick="mostrar()">Mostrar</button> <br>
+    <button onclick="inverter()">Inverter</button> <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    nome_alunos = []
+    nota_media = []
+
+    function media() {
+        let nome = ipt_nome.value
+        let nota1 = Number(ipt_prinota.value)
+        let nota2 = Number(ipt_segnota.value)
+        let nota3 = Number(ipt_ternota.value)
+        let media = (nota1 + nota2 + nota3) / 3
+        nome_alunos.push(nome)
+        nota_media.push(media)
+        ipt_prinota.value = ``
+        ipt_segnota.value = ``
+        ipt_ternota.value = ``
+        ipt_nome.value = ``
+
+    }
+    function ranking() {
+        maior_nota = nota_media[0]
+        menor_nota = nota_media[0]
+        div_msg.innerHTML = ''
+        for (let i = 0; i < nome_alunos.length; i++) {
+            let nota_atual = nota_media[i];
+
+            if (nota_atual > maior_nota) {
+                maior_nota = nota_atual;
+            }
+            if (nota_atual < menor_nota) {
+                menor_nota = nota_atual;
+            }
+        }
+        div_msg.innerHTML += `<br> maior média ${maior_nota.toFixed(2)}<br> menor média ${menor_nota.toFixed(2)}`
+    }
+    function mostrar() {
+        div_msg.innerHTML = ''
+        for (let i = 0; i < nome_alunos.length; i++) {
+            div_msg.innerHTML += `<br>${i + 1}. Aluno ${nome_alunos[i]} Nota ${nota_media[i].toFixed(2)}`
+        }
+    }
+    function inverter() {
+        div_msg.innerHTML = ''
+        for (let i = nome_alunos.length - 1; i >= 0; i--) {
+            div_msg.innerHTML += `<br>${i + 1}. Aluno ${nome_alunos[i]} Nota ${nota_media[i].toFixed(2)}`
+        }
+    }
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantidade de elefantes: <input id="ipt_elefantes" type="text"><br>
+    <button onclick="calcular()">Atazanar Medium</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        let qtd_elefantes = Number(ipt_elefantes.value);
+        let contador = 2;
+        let incomoda = " incomoda"
+        while(contador <= qtd_elefantes){
+            incomoda += " incomoda"
+            div_msg.innerHTML += `
+            <br><br>1 elefante incomoda muita gente
+            <br>${contador} elefante(s)${incomoda} muito mais`
+            contador++;
+        }
+    }
+</script>
