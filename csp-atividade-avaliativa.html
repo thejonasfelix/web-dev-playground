@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSP</title>
+</head>
+
+<body>
+    <div id="div_msg" style="display: block;">
+        <h3>CSP-Central de Serviços Públicos</h3>
+        Categoria(entre 1 e 5): <input id="ipt_categoria" type="text"><br>
+        Serviço(com pelo menos 5 letras): <input id="ipt_servico" type="text"><br>
+        Valor(entre 1,00 e 40,00): <input id="ipt_valor" type="text">
+        <button onclick="cadastrar()">Cadastrar</button><br>
+        Percentual de Ajuste(entre 1,0 e 20,0): <input id="ipt_percentual" type="text"><button
+            onclick="ajustar()">Ajustar</button><br>
+        <button onclick="encerrar()">Encerrar</button>
+    </div>
+    <div id="div_msg2" style="display: none;">
+        <button onclick="encerrar()">Encerrar</button>
+    </div>
+    <div id="div_msg3" style="display: none;"></div>
+</body>
+
+</html>
+<script>
+    vt_categoria = []
+    vt_servico = []
+    vt_valor = []
+    function cadastrar() {
+        let categoria = Number(ipt_categoria.value)
+        let servico = ipt_servico.value
+        let valor = Number(ipt_valor.value)
+        if (categoria < 1 || categoria > 5) {
+            alert("Categoria deve ser entre 1 e 5")
+        }
+        else if (servico.length < 5) {
+            alert("Serviço deve conter pelo menos 5 letras")
+        }
+        else if (valor < 1 || valor > 40) {
+            alert("Valor deve ser entre 1,00 e 40,00")
+        }
+        else {vt_servico.push(servico)
+            vt_categoria.push(categoria)
+            vt_valor.push(valor)
+            for(var i = vt_servico.length -1; i >= 0; i--){
+            div_msg.innerHTML += `<br>Serviço: ${vt_servico}  <br>Valor: R$${vt_valor}  <br>Categoria: ${vt_categoria} `
+            break;  
+            }
+        }
+    }
+    function ajustar() {
+        div_msg.style.display = "none"
+        div_msg2.style.display = "block"
+        let percentual = Number(ipt_percentual.value)
+        if (percentual < 1 || percentual > 20) {
+            alert("Percentual deve ser entre 1,0 e 20,0")
+        }
+        else {
+            for (var i = 0; i < vt_valor.length; i++) {
+                vt_valor[i] += vt_valor[i] * (percentual / 100);
+                div_msg2.innerHTML += `<br>Serviço: ${vt_servico[i]} <br>Valor: R$${vt_valor[i].toFixed(2)} <br>Categoria: ${vt_categoria[i]}<br><br>`
+            }
+        }
+    }
+    function encerrar() {
+        div_msg2.style.display = "none"
+        div_msg3.style.display = "block"
+        let qtd_servicos = vt_servico.length
+        let mais_caro = vt_valor[0]
+        let mais_barato = vt_valor[0]
+        let media_valor = 0
+        for (var i = 0; i < vt_valor.length; i++) {
+            if (vt_valor[i] > mais_caro) {
+                mais_caro = vt_valor[i]
+            }
+            if (vt_valor[i] < mais_barato) {
+                mais_barato = vt_valor[i]
+            }
+            media_valor += vt_valor[i]
+        }
+        qtd_valores = vt_valor.length
+        media_valor = media_valor / qtd_valores
+        div_msg3.innerHTML += 
+        `<br>Quantidade Serviços: ${qtd_servicos}
+        <br>Serviço mais caro: R$${mais_caro.toFixed(2)}
+        <br> Serviço mais barato: R$${mais_barato.toFixed(2)}
+        <br> Média dos valores: R$${media_valor.toFixed(2)}`
+
+    }
+</script>

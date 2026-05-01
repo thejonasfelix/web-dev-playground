@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar e Deletar elementos do vetor</title>
 </head>
+
 <body>
     <h3>Cadastrar e Deletar Elementos do Vetor</h3>
-    nome da fruta: <input id="ipt_nome_fruta" type="text"><br>
-    fruta que deseja excluir: <input id="ipt_nome_exclusao" type="text">
-    <button onclick="cadastrar()">Cadastrar</button>
-    <button onclick="deletar()">Deletar</button>
+    nome da fruta: <input id="ipt_nome_fruta" type="text"><button onclick="cadastrar()">Cadastrar</button><br>
+    fruta que deseja excluir: <input id="ipt_nome_exclusao" type="text"><button onclick="deletar()">Deletar</button><br>
+    fruta que deseja alterar: <input id="ipt_fruta_de" type="text"> nome da fruta nova: <input id="ipt_fruta_para"
+        type="text">
+    <button onclick="alterar()">Alterar</button> ou <button onclick="alterartodos()">Alterar Todos</button>
     <div id="div_msg"></div>
 </body>
+
 </html>
 <script>
     vt_frutas = []
-    function cadastrar(){
+    function cadastrar() {
         let nome_fruta = ipt_nome_fruta.value
         vt_frutas.push(nome_fruta)
         div_msg.innerHTML = `<br>${vt_frutas}`
-        ipt_nome_fruta.value = `` 
+        ipt_nome_fruta.value = ``
     }
-    function deletar(){
+    function deletar() {
         var nome_exclusão = ipt_nome_exclusao.value
-        for(var i = 0; i < vt_frutas.length; i++){
-            if(vt_frutas[i] == nome_exclusão){
-                vt_frutas.splice(i,1);
+        for (var i = 0; i < vt_frutas.length; i++) {
+            if (vt_frutas[i] == nome_exclusão) {
+                vt_frutas.splice(i, 1);
                 div_msg.innerHTML = `<br>${vt_frutas}`
             }
         }
         ipt_nome_exclusao.value = ``
     }
+
+    function alterar() {
+        let fruta_de = ipt_fruta_de.value
+        let fruta_para = ipt_fruta_para.value
+        for (var i = 0; i < vt_frutas.length; i++) {
+            if (vt_frutas[i] == fruta_de) {
+                vt_frutas[i] = fruta_para
+                div_msg.innerHTML = `<br>${vt_frutas}`;
+                break;
+            }
+            ipt_fruta_para.value = ``
+        }
+    }
+
+    function alterartodos() {
+        let fruta_de = ipt_fruta_de.value
+        let fruta_para = ipt_fruta_para.value
+        for (var i = 0; i < vt_frutas.length; i++) {
+            if (vt_frutas[i] == fruta_de) {
+                vt_frutas[i] = fruta_para
+                div_msg.innerHTML = `<br>${vt_frutas}`
+            }
+            ipt_fruta_para.value = ``
+        }
+    }
+
+
 </script>

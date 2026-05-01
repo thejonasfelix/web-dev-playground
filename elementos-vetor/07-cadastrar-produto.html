@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07 Cadastro de Produtos</title>
+</head>
+
+<body>
+    <h3>07-Cadastrar Produtos</h3>
+    Numero produto(entre 6000 e 7000): <input id="ipt_num_produt" type="text"><br>
+    Valor Produto(maior que 10 e menor que 1000): <input id="ipt_valor_produto" type="text">
+    <button onclick="registrar()">Registrar</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    vt_produtos = []
+    vt_valores = []
+    function registrar() {
+        let num_produto = Number(ipt_num_produt.value)
+        let valor_produto = Number(ipt_valor_produto.value)
+        if(num_produto < 6000 || num_produto > 7000){
+            alert("Número do produto deve ser entre 6000 e 7000")
+        }
+        else if(valor_produto < 10 || valor_produto > 1000){
+            alert("Valor do produto deve ser entre 10 e 1000")
+        }
+        else{
+            if (vt_produtos.indexOf(num_produto) == -1) {
+            vt_valores.push(valor_produto)
+            vt_produtos.push(num_produto)
+            div_msg.innerHTML = `<br>${vt_produtos}<br>${vt_valores}`
+        }
+        else {
+            for (var index = 0; index < vt_produtos.length; index++) {
+                if (vt_produtos[index] == num_produto) {
+                    vt_valores[index] = valor_produto;
+                    div_msg.innerHTML = `<br>${vt_produtos}<br>${vt_valores}`
+                    break;
+                }
+            }
+        }
+        }
+    }
+
+</script>
+<!-- Faça um programa para controlar o valor dos produtos em estoque.
+1.      Cadastrar o produto e seu valor caso ele não exista no vetor.
+2.      Alterar o valor do produto caso o produto já esteja cadastrado no vetor.
+3.      Listar todos os produtos e valores registrados.   -->
