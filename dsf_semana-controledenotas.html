@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>controle de notas</title>
+</head>
+
+<body>
+    <div id="div_msg" style="display: block;">
+        <h3>Controle de Notas</h3>
+        R.A: <input id="ipt_ra" type="text"> Nota <input id="ipt_nota" type="text"><br>
+        <button onclick="incluir()">Incluir</button> <button onclick="excluir()">Excluir</button><br>
+        <button onclick="alterar()">Alterar</button> Nota: <input id="ipt_nota2" type="text"><br>
+        <button onclick="ajustar()">Ajustar Nota</button><br>
+        <button onclick="consultar()">Consultar</button><br>
+    </div>
+    <div id="div_msg2" style="display: none;">
+        <h3>Tabela de consulta</h3>
+        <button onclick="ra()">R.A</button> De: <input id="ipt_ra_de" type="text"> Até <input id="ipt_ra_ate"
+            type="text"><br>
+        <button onclick="ra()">Nota</button> De: <input id="ipt_nota_de" type="text"> Até <input id="ipt_nota_ate"
+            type="text"><br>
+        <button onclick="voltar()">Voltar</button><br>
+    </div>
+
+    <div id="div_msg3" style="display: none;">
+        <h3>Tela de Ajuste de Notas</h3>
+        R.A - De: <input id="ipt_ra_de" type="text"> Até <input id="ipt_ra_ate" type="text"><br>
+        <button onclick="bonus()">Bonus</button> Pontos: <input id="ipt_bonus_p" type="text"> Ou %: <input
+            id="ipt_percent_bonus" type="text"><br>
+        Ou
+        <button onclick="reducao()">Redução</button> Pontos: <input id="ipt_reduc_p" type="text"> Ou %: <input
+            id="ipt_percent_reduc" type="text"><br>
+        <button onclick="voltar()">Voltar</button><br>
+
+    </div>
+</body>
+
+</html>
+<script>
+    vt_ra = []
+    vt_nota = []
+    function validacao() {
+        let ra = Number(ipt_ra.value)
+        let nota = Number(ipt_nota.value)
+        if (ra < 2000 || ra > 3000) {
+            alert('R.A inválido!')
+            return false
+        }
+        else if (nota < 0 || nota > 10) {
+            alert('Nota inválida!')
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    function incluir() {
+        var ra = Number(ipt_ra.value)
+        var nota = Number(ipt_nota.value)
+        validacao()
+        if (!validacao()) {
+            return;
+        }
+        vt_ra.push(ra)
+        vt_nota.push(nota)
+        for (var i = vt_ra.length - 1; i >= 0; i--) {
+            div_msg.innerHTML += `<br> R.A: ${vt_ra} <br> Nota: ${vt_nota}`
+        }
+    }
+    function excluir() {
+        let ra = Number(ipt_ra.value)
+        let nota = Number(ipt_nota.value)
+        let achou = false;
+        for (var i = vt_ra.length - 1; i >= 0; i--) {
+            if (vt_ra[i] == ra) {
+                vt_ra.splice(i, 1);
+                vt_nota.splice(i, 1);
+                achou = true;
+                div_msg.innerHTML += `<br> R.A: ${vt_ra} <br> Nota: ${vt_nota}`
+                break;
+            }
+        }
+        if (!achou) {
+            alert('Nenhum R.A encontrado')
+        }
+    }
+    function alterar() {
+        let ra = Number(ipt_ra.value)
+        let nota = Number(ipt_nota2.value)
+        let achou = false;
+        for (var i = vt_ra.length - 1; i >= 0; i--) {
+            if (vt_ra[i] == ra) {
+                vt_nota[i] = nota;
+                achou = true;
+                div_msg.innerHTML += `<br> R.A: ${vt_ra} <br> Nota: ${vt_nota}`
+                break;
+            }
+        }
+        if (!achou) {
+            alert('Nenhum R.A encontrado')
+        }
+    }
+
+    function consultar() {
+        div_msg.style.display = 'none'
+        div_msg2.style.display = 'block'
+    }
+    //funções da tela consulta
+
+    function voltar() {
+        div_msg.style.display = 'block'
+        div_msg2.style.display = 'none'
+    }
+
+    function ra() {
+        let ra_inicio = Number(ipt_ra_de.value)
+        let ra_final = Number(ipt_ra_ate.value)
+        let nota_inicio = Number(ipt_nota_de.value)
+        let nota_final = Number(ipt_nota_ate.value)
+
+        let ocorrencias = 0
+        let maior_nota = vt_nota[0]
+        let menor_nota = vt_nota[0]
+        let media_nota = 0
+
+        let ocorrencias_vetor = vt_nota.length
+        let maior_nota_vetor = vt_nota[0]
+        let menor_nota_vetor = vt_nota[0]
+        let media_nota_vetor = 0
+
+        let media8 = 0
+        let media4 = 0
+        if (ra_final > ra_final) {
+            alert('Intervalo de valores incorreto')
+        }
+        else if (nota_final > nota_inicio) {
+            alert('Intervalo de notas incorreto')
+        }
+
+        else {
+            for (var i = 0; i < vt_ra.length; i++) {
+                if (vt_ra[i] >= ra_inicio && vt_ra[i] <= ra_final) {
+
+                    if (vt_nota[i] > maior_nota) {
+                        maior_nota = vt_nota[i]
+                    }
+                    if (vt_nota[i] < menor_nota) {
+                        menor_nota = vt_nota[i]
+                    }
+                    media_nota += vt_nota[i]
+                    ocorrencias++;
+                }
+                media_nota = media_nota / ocorrencias
+
+                if (vt_nota[i] > maior_nota) {
+                    maior_nota_vetor = vt_nota[i]
+                }
+                if (vt_nota[i] < menor_nota) {
+                    menor_nota_vetor = vt_nota[i]
+                }
+                if (vt_nota[i] >= 8) {
+                    media8++;
+                }
+                if (vt_nota[i] < 4) {
+                    media4++;
+                }
+                media_nota_vetor += vt_nota[i]
+            }
+            media_nota_vetor = media_nota_vetor / ocorrencias_vetor
+            div_msg2.innerHTML =
+                    `<h3>Cadastros Selecionados</h3><br>
+            ${(vt_ra[i]).length}° - RA:${vt_ra[i]} - Nota ${vt_nota[i]}<br><br>
+            <h3>Resumo Final</h3><br>
+            Total de ocorrencias listadas ${ocorrencias}<br>
+            Maior nota do intervalo ${maior_nota}<br>
+            Menor nota do intervalo ${menor_nota}<br>
+            Média das notas ${media_nota}<br><br>
+
+            <b>Total de ocorrencias vetor ${ocorrencias_vetor}<b><br>
+            Maior nota do intervalo ${maior_nota_vetor}<br>
+            Menor nota do intervalo ${menor_nota_vetor}<br>
+            Média das notas ${media_nota_vetor}<br>
+            Total de alunos com média acima de 8: ${media8}<br>
+            Total de alunos com média abaixo de 4: ${media4}<br>`
+        }
+    }
+    //função ajuste de notas
+    function ajustar() {
+        div_msg.style.display = 'none'
+        div_msg2.style.display = 'none'
+        div_msg3.style.display = 'block'
+    }
+    function bonus() {
+        let ra_inicio = Number(ipt_ra_de.value);
+        let ra_final = Number(ipt_ra_ate.value);
+        let bonus_pontuacao = Number(ipt_bonus_p.value);
+        let bonus_porcentagem = Number(ipt_percent_bonus.value);
+        if (ra_inicio > ra_final) {
+            alert('Intervalo de valores de R.A. incorreto!');
+            return;
+        }
+        else {
+            if (bonus_porcentagem > 3 || bonus_porcentagem < 13) {
+                alert(`Bônus inválido! O limite máximo é entre 3% e 13%`);
+                return;
+            }
+            if (bonus_pontuacao < 0.5 || bonus_pontuacao > 1.5) {
+                alert('Bônus inválido! O bônus deve ser um valor entre 0 e 1.5');
+                return;
+            }
+            if (!(bonus_pontuacao || porcentagem)) {
+                bonus_automatico = Math.random() * (1.5 - 0.5) + 0.5;
+                nota_bonus = bonus_automatico + vt_nota[i];
+                if (nota_bonus > 10) {
+                    nota_bonus = 10;
+                }
+                else if (nota_bonus < 0) {
+                    nota_bonus = 0;
+                }
+                vt_nota[i] = nota_bonus;
+                div_msg3.innerHTML = `<br> R.A: ${vt_ra[i]} - Nota com bônus: ${vt_nota[i].toFixed(2)}`;
+            }
+            else {
+                for (var i = vt_ra[ra_inicio]; i <= vt_ra[ra_final]; i++) {
+                    if (bonus_pontuacao) {
+                        nota_bonus = bonus_pontuacao + vt_nota[i];
+                    }
+                    if (nota_bonus > 10) {
+                        nota_bonus = 10;
+                    }
+                    else if (nota_bonus < 0) {
+                        nota_bonus = 0;
+                    }
+                    vt_nota[i] = nota_bonus;
+                    div_msg3.innerHTML = `<br> R.A: ${vt_ra[i]} - Nota com bônus: ${vt_nota[i].toFixed(2)}`;
+                }
+            }
+        }
+    }
+
+    function reducao(){
+
+    }
+
+
+
+</script>
