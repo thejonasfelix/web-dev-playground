@@ -15,6 +15,7 @@
         <button onclick="alterar()">Alterar</button> Nota: <input id="ipt_nota2" type="text"><br>
         <button onclick="ajustar()">Ajustar Nota</button><br>
         <button onclick="consultar()">Consultar</button><br>
+        <div id="div_msgtela1"></div>
     </div>
     <div id="div_msg2" style="display: none;">
         <h3>Tabela de consulta</h3>
@@ -60,14 +61,14 @@
     function incluir() {
         var ra = Number(ipt_ra.value)
         var nota = Number(ipt_nota.value)
-        validacao()
+        div_msgtela1.innerHTML = "";
         if (!validacao()) {
             return;
         }
         vt_ra.push(ra)
         vt_nota.push(nota)
         for (var i = vt_ra.length - 1; i >= 0; i--) {
-            div_msg.innerHTML += `<br> R.A: ${vt_ra} <br> Nota: ${vt_nota}`
+            div_msgtela1.innerHTML += `<br> R.A: ${vt_ra[i]} <br> Nota: ${vt_nota[i]}`
         }
     }
     function excluir() {
@@ -79,7 +80,7 @@
                 vt_ra.splice(i, 1);
                 vt_nota.splice(i, 1);
                 achou = true;
-                div_msg.innerHTML += `<br> R.A: ${vt_ra} <br> Nota: ${vt_nota}`
+                div_msgtela1.innerHTML += `<br> R.A: ${vt_ra[i]} <br> Nota: ${vt_nota[i]}`
                 break;
             }
         }
@@ -91,11 +92,15 @@
         let ra = Number(ipt_ra.value)
         let nota = Number(ipt_nota2.value)
         let achou = false;
+        if (nota < 0 || nota > 10) {
+            alert("A nova nota deve estar entre 0 e 10");
+            return;
+        }
         for (var i = vt_ra.length - 1; i >= 0; i--) {
             if (vt_ra[i] == ra) {
                 vt_nota[i] = nota;
                 achou = true;
-                div_msg.innerHTML += `<br> R.A: ${vt_ra} <br> Nota: ${vt_nota}`
+                div_msgtela1.innerHTML += `<br> R.A: ${vt_ra[i]} <br> Nota: ${vt_nota[i]}`
                 break;
             }
         }
@@ -171,7 +176,7 @@
             }
             media_nota_vetor = media_nota_vetor / ocorrencias_vetor
             div_msg2.innerHTML =
-                    `<h3>Cadastros Selecionados</h3><br>
+                `<h3>Cadastros Selecionados</h3><br>
             ${(vt_ra[i]).length}° - RA:${vt_ra[i]} - Nota ${vt_nota[i]}<br><br>
             <h3>Resumo Final</h3><br>
             Total de ocorrencias listadas ${ocorrencias}<br>
@@ -241,7 +246,7 @@
         }
     }
 
-    function reducao(){
+    function reducao() {
 
     }
 
