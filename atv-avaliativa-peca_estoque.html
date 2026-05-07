@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Controle de Peça no estoque</h3>
+    Código da peça: <input type="text" id="ipt_codigo"><br><br>
+    <button onclick="incluir()">Incluir</button><br>
+    <button onclick="excluir()">Excluir</button><br>
+    <button onclick="listarAte()">Listar Até</button><br>
+    <button onclick="listarDe()">Listar De</button><br>
+    Novo código: <input type="text" id="ipt_novo_codigo"><br><br>
+    <button onclick="alterar()">Alterar</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    vt_peca = []
+    function incluir(){
+        let codigo = ipt_codigo.value;
+        if(codigo.length < 3){
+            alert('O código da peça deve ter no mínimo 3 posições');
+            return;
+        }
+        if(codigo.indexOf('@') == -1 && codigo.indexOf('$') == -1 && codigo.indexOf('&') == -1 && codigo.indexOf('*') == -1){
+            alert('O código da peça deve conter um dos caracteres @, $, & ou *');
+            return;
+        }
+        if(codigo.startsWith('A') == false && codigo.startsWith('C') == false && codigo.startsWith('S') == false){
+            alert('O código da peça deve começar com A, C ou S');
+            return;
+        }
+        vt_peca.push(codigo)
+        div_msg.innerHTML = vt_peca;
+    }
+    function excluir(){
+        let codigo = ipt_codigo.value;
+        for(let i = 0; i < vt_peca.length; i++){
+            if(vt_peca[i] == codigo){
+                vt_peca.splice(i,1);
+                div_msg.innerHTML += `<br>Peça ${codigo} excluída com sucesso - ${vt_peca}`;
+            }
+        }
+    }
+    function listarAte(){
+        let codigo = ipt_codigo.value;
+        for(let i = 0; i < vt_peca.length; i++){
+            if(vt_peca[i] == codigo){
+                for(let index = 0; index < i; index++){
+                    div_msg.innerHTML += `<br>${vt_peca[index]}`;
+                }
+            }
+        }
+    }
+    function listarDe(){
+        let codigo = ipt_codigo.value;
+        for(let i = 0; i < vt_peca.length; i++){
+            if(vt_peca[i] == codigo){
+                for(let index = i + 1; index < vt_peca.length; index++){
+                    div_msg.innerHTML += `<br>${vt_peca[index]}`;
+                }
+            }
+        }
+    }
+    function alterar(){
+        let codigo = ipt_codigo.value;
+        let novo_codigo = ipt_novo_codigo.value;
+        if(codigo.length < 3){
+            alert('O código da peça deve ter no mínimo 3 posições');
+            return;
+        }
+        if(codigo.indexOf('@') == -1 && codigo.indexOf('$') == -1 && codigo.indexOf('&') == -1 && codigo.indexOf('*') == -1){
+            alert('O código da peça deve conter um dos caracteres @, $, & ou *');
+            return;
+        }
+        if(codigo.startsWith('A') == false && codigo.startsWith('C') == false && codigo.startsWith('S') == false){
+            alert('O código da peça deve começar com A, C ou S');
+            return;
+        }
+        for(let i = 0; i < vt_peca.length; i++){
+            if(vt_peca[i] == codigo){
+                vt_peca[i] = novo_codigo;
+                div_msg.innerHTML += `<br>Peça ${novo_codigo} alterada com sucesso - ${vt_peca}`;
+            }
+        }
+    }
+
+</script>
