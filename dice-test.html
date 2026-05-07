@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Dados</title>
+</head>
+
+<body>
+    <h3>Jogo de Dados</h3>
+    Escolha o Número: <select name="" id="opcoes">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select><br>
+    Quantidade de Rodadas: <input id="ipt_qtde_rodadas" type="text"><br>
+    <button onclick="processar()">Processar</button><br><br>
+    <div id="div_msg"></div>
+
+</body>
+
+</html>
+<script>
+    function processar() {
+        let numero_user = Number(opcoes.value)
+        let vitoria_user = 1;
+        let vitoria_maq = 0;
+        let rodadas = Number(ipt_qtde_rodadas.value)
+        if (rodadas == ' ') {
+            alert('Insira a quantidade de rodadas')
+        }
+        if (rodadas < 10 || rodadas > 20) {
+            alert('Insira o número de rodadas válido')
+        }
+        for (let i = 0; i < rodadas; i++) {
+            while (vitoria_user > 0) {
+                let num_sorteado = (Math.random() * 5 + 1).toFixed(0)
+                if (numero_user == num_sorteado) {
+                    vitoria_user += 3;
+                    div_msg.innerHTML += `<br>Rodada ${i + 1} - Número Usuario ${numero_user} - <b>Número Sorteado ${num_sorteado}<b> - Usuário WIN`
+                }
+                if ((numero_user - 1) == num_sorteado) {
+                    vitoria_user += 1;
+                    div_msg.innerHTML += `<br>Rodada ${i + 1} - Número Usuario ${numero_user} - <b>Número Sorteado ${num_sorteado}<b> - Usuário WIN`
+                }
+                if ((numero_user + 1) == num_sorteado) {
+                    vitoria_user += 1;
+                    div_msg.innerHTML += `<br>Rodada ${i + 1} - Número Usuario ${numero_user} - <b>Número Sorteado ${num_sorteado}<b> - Usuário WIN`
+                }
+                else {
+                    vitoria_maq++;
+                    div_msg.innerHTML += `<br>Rodada ${i + 1} - Número Usuario ${numero_user} - <b>Número Sorteado ${num_sorteado}<b> - Máquina WIN`
+                }
+                vitoria_user--;
+            }
+        }
+        if (vitoria_maq > vitoria_user) {
+                div_msg.innerHTML += `<br><br>A Máquina Venceu!<br><b>Pontuação do usuário: ${vitoria_user}<br> Pontuação da máquina ${vitoria_maq}<b>`
+            }
+            else if (vitoria_user > vitoria_maq) {
+                div_msg.innerHTML += `<br><br>Usuário Venceu!<br><b>Pontuação do usuário: ${vitoria_user}<br> Pontuação da máquina ${vitoria_maq}<b>`
+            }
+            else {
+                div_msg.innerHTML += `<br><br>Empate!<br><b>Pontuação do usuário: ${vitoria_user}<br> Pontuação da máquina ${vitoria_maq}<b>`
+            }
+    }
+</script>
